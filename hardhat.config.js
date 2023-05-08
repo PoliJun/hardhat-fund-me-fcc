@@ -43,6 +43,12 @@ module.exports = {
         coinmarketcap: COINMARKETCAP_API_KEY,
         token: "MATIC",
     },
+    namedAccounts: {
+        deployer: {
+            default: 0,
+        },
+        user: {
+            default: 1,
+        },
+    },
 }
-
-// there is a lot of plugins on hardhat

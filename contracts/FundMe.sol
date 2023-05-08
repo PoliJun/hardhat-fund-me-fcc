@@ -15,8 +15,11 @@ contract FundMe {
     mapping(address => uint256) public addressToAmountFunded;
     address public immutable i_owner;
 
-    constructor() {
+    AggregatorV3Interface public priceFeed;
+
+    constructor(address priceFeedAddress) {
         i_owner = msg.sender;
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     function fund() public payable {
@@ -29,7 +32,7 @@ contract FundMe {
 
         // or PriceConverter.getConversionRate(msg.value);
         require(
-            msg.value.getConversionRate() >= MINIMUM_USD,
+            msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
             "Didn't send enough"
         ); //require is a checker,1e18=1*10*18
         funders.push(msg.sender);
