@@ -12,6 +12,11 @@ const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || "0xkey"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "key"
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "key"
 module.exports = {
+    // solidity: "0.8.18",
+    solidity: {
+        compilers: [{ version: "0.8.18" }, { version: "0.6.6" }],
+    },
+
     // default network is hardhat network
     // you can use: --network to specify the network when run deploy.js
     defaultNetwork: "hardhat",
@@ -28,7 +33,6 @@ module.exports = {
             chainId: 31337,
         },
     },
-    solidity: "0.8.18",
     etherscan: {
         apiKey: {
             // this is apiKey rather than apikey, bugged here
